@@ -11,7 +11,7 @@
    :CLOSED: <2014-12-10 Wed>
 ** VimOrganizer reading
 *** DONE Read through the org-mode manual
-    :CLOSED: <2014-12-10 Wed>
+    :CLOSED: <2014-12-09 Tue>
     [[http://orgmode.org/manual/index.html][orgmode manual]]
     VimOrganizer is pretty poorly documented - orgmode docs give a much 
     clearer idea of how things work.

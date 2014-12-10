@@ -1,0 +1,48 @@
+* Startup
+** DONE Install vim-organizer plugin
+   :CLOSED: <2014-12-09 Tue>
+*** Main plugin
+    [[https://github.com/hsitz/VimOrganizer][VimOrganizer]]
+*** Extra plugins required
+   [[https://github.com/vim-scripts/utl.vim][vim-scripts/utl.vim]]
+   [[https://github.com/chrisbra/NrrwRgn][chrisbra/NrrwRgn]]
+   [[https://github.com/mattn/calendar-vim][mattn/calendar-vim]]
+** DONE Publish a git repo for the timeline
+   :CLOSED: <2014-12-10 Wed>
+** VimOrganizer reading
+*** DONE Read through the org-mode manual
+    :CLOSED: <2014-12-10 Wed>
+    [[http://orgmode.org/manual/index.html][orgmode manual]]
+    VimOrganizer is pretty poorly documented - orgmode docs give a much 
+    clearer idea of how things work.
+*** DONE Read through the VimOrganizer docs
+   :CLOSED: <2014-12-10 Wed>
+   [[https://github.com/hsitz/VimOrganizer/blob/master/doc/vimorg.txt][VimOrganizer]]
+   Reference for vim specific keybindings etc.
+*** TODO Find a way to handle recurring deadlines
+   Mostly for blogging - can do it in orgmode I think, possible in VO?
+*** TODO Add extra todo states
+*** TODO Put together a more succinct cheat sheet for vim keybindings
+* OPW Admin
+** TODO Write blog post
+   :recurring
+   :DEADLINE: <2014-12-12 Fri>
+   Notes on [[https://misspindy.org/apocalypse/Notes][MissPindy wiki]] 
+   regarding initial contribution and application process. Could be 
+   interesting to future applicants.
+* Documentation
+** TODO Finish updating Readme.md
+   :SCHEDULED: <2014-12-11 Thu>
+*** TODO Write an introduction section
+*** TODO Revise the structure
+    From wiki: Structure doesn't seem super logical. Should the dev section be at the top? Doesn't seem up-to-date-either. 
+*** TODO Licensing documentation
+    Usually separate from the readme, not sure if it needs to be but it makes 
+    sense.
+** TODO Read through the documentation for setting up debbugs
+   :SCHEDULED: <2014-12-13 Sat>
+   Refer to the bug lodged a few weeks ago
+** TODO Research
+*** TODO Document the documentation
+    What is already there? What is most urgent (bug reports as first port of 
+    call)? From that we can work out priorities and scheduling etc. 

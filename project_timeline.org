@@ -1,3 +1,5 @@
+#+TODO: TODO STARTED | DONE FOLLOWUP ONGOING 
+
 * Startup
 ** DONE Install vim-organizer plugin
    :CLOSED: <2014-12-09 Tue>
@@ -21,7 +23,21 @@
    Reference for vim specific keybindings etc.
 *** TODO Find a way to handle recurring deadlines
    Mostly for blogging - can do it in orgmode I think, possible in VO?
-*** TODO Add extra todo states
+*** ONGOING Add extra todo states
+    FOLLOWUP - Used to mark the internal docs that I haven't checked yet but that 
+    may need to be updated
+    ONGOING - Projects that have no end date but will be worked on for the 
+    duration (like this one)
+    STARTED - Single projects that are incomplete (as distinct from ONGOING)
+**** Adding extra todo states
+     Can either be done globally via vimrc (not great for collaboration) or 
+     locally per file via configuration lines at the topp of the document.
+     #+begin-src 
+     #+TODO: TODO STARTED | DONE FOLLOWUP ONGOING
+     #+end_src
+     Note that for some reason amending the config lines requires restarting 
+     gvim to take effect. Not just a reload, but actually restarting gvim. No 
+     clue why - maybe reloads don't work the same outside of the terminal. 
 *** TODO Put together a more succinct cheat sheet for vim keybindings
 * OPW Admin
 ** TODO Write blog post
@@ -45,4 +61,7 @@
 ** TODO Research
 *** TODO Document the documentation
     What is already there? What is most urgent (bug reports as first port of 
-    call)? From that we can work out priorities and scheduling etc. 
+    call)? From that we can work out priorities and scheduling etc.
+    
+    Generated t
+

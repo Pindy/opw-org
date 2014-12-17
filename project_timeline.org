@@ -1,4 +1,4 @@
-#+TODO: TODO STARTED | DONE FOLLOWUP ONGOING 
+#+TODO: TODO STARTED | DONE FOLLOWUP CHECKED ONGOING 
 
 * Startup
 ** VimOrganizer
@@ -41,12 +41,17 @@
      clue why - maybe reloads don't work the same outside of the terminal? 
 **** TODO Put together a more succinct cheat sheet for vim keybindings
 * OPW Admin
-** TODO Write blog post
+** ONGOING Write blog post
    :recurring
-   :DEADLINE: <2014-12-12 Fri>
-   Notes on [[https://misspindy.org/apocalypse/Notes][MissPindy wiki]] 
-   regarding initial contribution and application process. Could be 
-   interesting to future applicants.
+   :DEADLINE: <2014-12-19 Fri>
+*** DONE post
+    :CLOSED: <2014-12-16 Tue>
+    Notes on [[https://misspindy.org/apocalypse/Notes][MissPindy wiki]] 
+    regarding initial contribution and application process. Could be 
+    interesting to future applicants.
+*** TODO post
+    :DEADLINE: <2014-12-19 Fri>
+    Setting up VimOrganizer - general tools for getting started etc?
 * Documentation
 ** TODO Finish updating Readme.md
    :SCHEDULED: <2014-12-11 Thu>
@@ -75,160 +80,59 @@
     
     Most of these files are not things I will need to touch - so might cull 
     this as I read. But in the mean time the structure is there to take notes.
-**** t
-***** 13_utf8_mail.t
-***** 07_bugreport.t
-***** 11_blocks.t
-***** 08_pkgreport.t
-***** 05_mail.t
-***** 03_status.t
-***** sendmail_tester
-***** 07_control_limit.t
-***** 03_configuration.t
-***** 02_version_dpkg.t
-***** 06_mail_handling.t
-***** 15_rebuild_indexdb.t
-***** 03_versions.t
-***** 03_packages.t
-***** 14_control_at_submit.t
-***** lib
-****** DebbugsTest.pm
-***** 09_soap.t
-***** 02_common.t
-***** 01_mime.t
-***** 10_expire.t
-***** 12_merge.t
-***** cover_lib
-****** Safe.pm
-***** 01_pod.t
-**** MANIFEST.SKIP
-**** Makefile.perl
 **** FOLLOWUP README.md
-**** templates
-***** en_US
-****** html
-******* pre_title.tmpl
-******* html_tail.tmpl
-******* post_title.tmpl
-****** cgi
-******* bugreport_buginfo.tmpl
-******* pkgindex.tmpl
-******* bugreport_pkginfo.tmpl
-******* pkgreport_javascript.tmpl
-******* pkgreport_options_include_exclude.tmpl
-******* pkgreport_options_include_exclude_key.tmpl
-******* short_bug_status.tmpl
-******* pkgreport_options.tmpl
-******* no_such_bug.tmpl
-******* bugreport.tmpl
-******* pkgreport_options_search_key.tmpl
-******* quit.tmpl
-****** mail
-******* maintainercc.tmpl
-******* process_default_package_selected.tmpl
-******* process_no_bug_number.tmpl
-******* header.tmpl
-******* process_your_bug_done.tmpl
-******* process_broken_subject.tmpl
-******* process_ack.tmpl
-******* excluded_from_control.tmpl
-******* process_no_package.tmpl
-******* invalid_maintainer.tmpl
-******* footer.tmpl
-******* process_ack_thanks_additional.tmpl
-******* message_body.tmpl
-******* invalid_version.tmpl
-******* xdebbugscc.tmpl
-******* forward_normal.tmpl
-******* process_mark_as_forwarded.tmpl
-******* forward_maintonly.tmpl
-******* process_unknown_bug_number.tmpl
-******* process_ack_thanks_new.tmpl
-******* invalid_user.tmpl
-******* submitter_changed.tmpl
-******* fake_control_message.tmpl
-******* invalid_severity.tmpl
-******* process_mark_as_done.tmpl
-******* forward_veryquiet.tmpl
-******* serious_mail_misconfiguration.tmpl
-**** Debbugs
-***** Recipients.pm
-***** Versions.pm
-***** UTF8.pm
-***** Config.pm
-***** URI.pm
-***** CGI
-****** Pkgreport.pm
-****** Bugreport.pm
-***** Common.pm
-***** Log.pm
-***** DBase.pm
-***** Text.pm
-***** Versions
-****** Dpkg.pm
-***** MIME.pm
-***** Packages.pm
-***** CGI.pm
-***** SOAP
-****** Server.pm
-***** Control
-****** Service.pm
-***** SOAP.pm
-***** Bugs.pm
-***** Email.pm
-***** Control.pm
-***** Estraier.pm
-***** DBase
-****** Log.pm
-****** LogEntry.pm
-****** Log
-******* Message.pm
-******* Html.pm
-******* Mail.pm
-***** Status.pm
-***** User.pm
-***** Libravatar.pm
-***** Mail.pm
-**** devel
-***** predef.tags
-***** debbugs.cfg
 **** html
-***** FOLLOWUP txt
-***** Developer.html.in
-***** Reporting.html.in
-***** htaccess
-***** server-refcard.html.in
-***** Access.html.in
-***** server-request.html.in
-***** server-control.html.in
-***** index.html.in
-***** 1x1.png
-***** bugs.css
+***** CHECKED txt
+      Empty folder. Heh.
 **** email
-***** FOLLOWUP notify-closed-control.txt
-***** FOLLOWUP badnumber.txt
-***** FOLLOWUP forwarded.txt
-**** Makefile
-**** Makefile.PL
+***** CHECKED notify-closed-control.txt
+***** CHECKED badnumber.txt
+***** CHECKED forwarded.txt
 **** debian
-***** crontab
-***** compat
-***** debbugs.install
-***** debbugsconfig
+     Appears to be debian specific documentation. 
 ***** FOLLOWUP copyright
+      Is this still GPL 2? The list of current developers is maybe out of 
+      date? Maybe look at the git log to see who the conributors have been in 
+      the last year?
+      Probably shouldn't be using bzr get for the source.
 ***** FOLLOWUP rules
-***** debbugs-local.install
+      SO a .deb is an archive with particular set of files. When you run the 
+      .deb with dpkg or apt the rules file gets run. Basically a makefile?
 ***** FOLLOWUP control
-***** debbugs-web.install
+      Package info. Tells dpkg what to configure when the package is being 
+      built or installed. 
 ***** FOLLOWUP TODO
+      Notes... by Don? Probably not. Out of date? What is this for, have these changes been 
+      implemented?
 ***** FOLLOWUP README.mail
-***** libdebbugs-perl.install
+      Well this seems gloriously out of date. 
 ***** FOLLOWUP source
 ****** format
 ***** FOLLOWUP README.Debian
+      Last timestamp was made when I was... 14 years old. Wow. Gloriously out 
+      of date. Entire rewrite needed? Needs a proper structure. Might need to 
+      go through the install process and see how much of this works.
+****** TODO Configuration -
+        To be checked. Probably correct? Could do with some more details 
+        regardless.
+****** TODO WWW - 
+        Again, to be checked. Probably largely correct still? More detail.
+        So debbugs needs two things to work - it needs to be able to send and 
+        receive email and needs to be able to generate and display webpages. So 
+        in order for users to be able to make http requests (should have paid 
+        more attention in web programming) there needs to be a webserver set up 
+        and configured to retreive flat resources from /usr/lib/debbugs/www and 
+        to generate whatever is needed using scripts located in .../www/cgi. 
+****** TODO Mail - 
+        MTA (Mail Transfer Agent) receives email from external sources and 
+        forwards it to wherever it needs to go. So in the case of a bug report, 
+        it needs to be sent to the recieve script via stdin and this needs to be 
+        configured on the mail server.
+****** TODO Cron - 
+      Makes sense. Check that the examples in /usr/share/doc/debbugs/examples 
+      are up to date.
+
 ***** FOLLOWUP docs
-***** debbugsconfig.8
-***** changelog
 **** FOLLOWUP scripts
      Eyeball these
 ***** age-1
@@ -251,107 +155,7 @@
 ***** gen-indices
 ***** config
 ***** receive
-**** bin
-***** local-debbugs
-***** debbugs-rebuild-index.db
-***** add_bug_to_estraier
-***** test_bts
-**** Mail
-***** CrossAssassin.pm
-**** cgi
-***** pkgindex.cgi
-***** smarturl.cgi
-***** bugreport.cgi
-***** search.cgi
-***** common.pl
-***** cookies.cgi
-***** pkgreport.cgi
-***** soap.cgi
-***** libravatar.cgi
-***** version.cgi
-***** bugs-fetch2.pl
-**** COPYING
-**** blib
-***** arch
-****** auto
-******* Debbugs
-***** man1
-****** local-debbugs.1p
-****** add_bug_to_estraier.1p
-***** script
-****** local-debbugs
-****** add_bug_to_estraier
-***** lib
-****** Debbugs
-******* Recipients.pm
-******* Versions.pm
-******* UTF8.pm
-******* Config.pm
-******* URI.pm
-******* CGI
-******** Pkgreport.pm
-******** Bugreport.pm
-******* Common.pm
-******* Log.pm
-******* DBase.pm
-******* Text.pm
-******* Versions
-******** Dpkg.pm
-******* MIME.pm
-******* Packages.pm
-******* CGI.pm
-******* SOAP
-******** Server.pm
-******* Control
-******** Service.pm
-******* SOAP.pm
-******* Bugs.pm
-******* Email.pm
-******* Control.pm
-******* Estraier.pm
-******* DBase
-******** Log.pm
-******** LogEntry.pm
-******** Log
-********* Message.pm
-********* Html.pm
-********* Mail.pm
-******* Status.pm
-******* User.pm
-******* Libravatar.pm
-******* Mail.pm
-****** auto
-******* Debbugs
-****** Mail
-******* CrossAssassin.pm
-***** man3
-****** Debbugs::Mail.3pm
-****** Debbugs::Recipients.3pm
-****** Debbugs::CGI.3pm
-****** Debbugs::Estraier.3pm
-****** Debbugs::Bugs.3pm
-****** Debbugs::SOAP::Server.3pm
-****** Debbugs::Status.3pm
-****** Debbugs::URI.3pm
-****** Debbugs::Common.3pm
-****** Debbugs::CGI::Bugreport.3pm
-****** Debbugs::SOAP.3pm
-****** Debbugs::User.3pm
-****** Debbugs::Libravatar.3pm
-****** Debbugs::Log.3pm
-****** Debbugs::Versions.3pm
-****** Debbugs::CGI::Pkgreport.3pm
-****** Debbugs::Config.3pm
-****** Debbugs::Text.3pm
-****** Debbugs::Packages.3pm
-****** Debbugs::Versions::Dpkg.3pm
-****** Debbugs::Control.3pm
-****** Debbugs::UTF8.3pm
-****** Debbugs::MIME.3pm
-****** Debbugs::Control::Service.3pm
-***** bin
 **** FOLLOWUP UPGRADE
-**** MYMETA.yml
 **** FOLLOWUP misc
 ***** Maintainers
 ***** sources
@@ -360,17 +164,6 @@
 ***** nextnumber
 ***** Maintainers.override
 ***** updateseqs
-**** migrate
-***** debbugs-makeversions
-***** debbugs-dbhash
-***** debbugs-upgradestatus
-***** debbugs-dbhash.8
-**** pm_to_blib
-**** examples
-***** hyperestraier_config
-***** debbugs.cfg.2
-***** apache.conf
-***** debian
 ****** FOLLOWUP versions
        Double check these
 ******* debbugs-makeversions
@@ -396,5 +189,4 @@
 ****** misc
 ******* bugspam.cgi
 ******* split_index.pl
-***** debbugs.cfg
 **** FOLLOWUP future_directions

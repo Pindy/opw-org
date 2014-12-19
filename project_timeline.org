@@ -104,12 +104,29 @@
 ***** FOLLOWUP TODO
       Notes... by Don? Probably not. Out of date? What is this for, have these changes been 
       implemented?
-***** FOLLOWUP README.mail
-      Well this seems gloriously out of date. 
+***** STARTED README.mail
+      Well this seems gloriously out of date.
+      When you install debbugs it creates a config file here: 
+      /etc/debbugs/config and needs to set the $gMailer variable to point to 
+      an MTA, either exim, qmail or sendmail. Need to check that it works with 
+      postfix as well as per that email but let's start with these.
+
+      Can't think of any way to do this other than to create a bunch of 
+      virtual machines and try and install debbugs with all these different 
+      configurations... So here we go!
+
+****** TODO Setup Exim 4 and verify that this is still current
+
+****** TODO Setup qmail and verify that this works
+
+****** TODO Setup sendmail and check that this still works
+
+****** TODO Check with Don if this is still neccessary?
+****** TODO Set up postfix and check etc..
 ***** FOLLOWUP source
 ****** format
-***** FOLLOWUP README.Debian
-      Last timestamp was made when I was... 14 years old. Wow. Gloriously out 
+***** STARTED README.Debian
+      Gloriously out 
       of date. Entire rewrite needed? Needs a proper structure. Might need to 
       go through the install process and see how much of this works.
 ****** TODO Configuration -
@@ -133,28 +150,6 @@
       are up to date.
 
 ***** FOLLOWUP docs
-**** FOLLOWUP scripts
-     Eyeball these
-***** age-1
-***** service
-***** db2html
-***** spamscan-sa
-***** html-install
-***** spamscan
-***** config.in.default
-***** processall
-***** config.debian
-***** summary
-***** text
-***** html-control
-***** expire
-***** mailsummary
-***** rebuild
-***** process
-***** errorlib
-***** gen-indices
-***** config
-***** receive
 **** FOLLOWUP UPGRADE
 **** FOLLOWUP misc
 ***** Maintainers

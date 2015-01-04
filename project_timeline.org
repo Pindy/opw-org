@@ -116,7 +116,60 @@
       configurations... So here we go!
 
 ****** TODO Setup Exim 4 and verify that this is still current
+       exim appears to be the default value for $gMailer
+       The exim 4 setup supports virtual domains. This doesn't hurt on a
+       dedicated system. File names are for systems that use exim4's split
+       config scheme. If you use something else, you'll need to put the
+       configuration options in yourself at the appropriate place (most
+       likely /etc/exim4/exim4.conf or /etc/exim4/exim4.conf.template).
 
+       Create a non-root user with a non-root group as its primary group.
+       We'll use Debian-debbugs as the user and group:
+       # adduser --system --group --home /var/lib/debbugs \
+       --no-create-home --disabled-login --force-badname Debian-debbugs
+
+       This user needs to be able to write to /var/lib/debbugs. (Need to change the permissions)
+
+       chown -R Debian-debbugs /var/lib/debbugs/ ?? should work
+
+       Do I have to make this file or should it have been generated automatically?
+
+       Maybe in /usr/share/doc/debbugs/examples ??
+
+       /etc/exim4/conf.d/main/03_debbugs:
+       DEBBUGS_DOMAIN = <domain name> (used localhost - not sure if this will work?)
+       DEBBUGS_USER = Debian-debbugs
+       DEBBUGS_GROUP = Debian-debbugs
+
+       /etc/exim4/conf.d/transport/30_debbugs:
+       debbugs_pipe:
+       debug_print = "T: debbugs_pipe for $local_part@$domain"
+       driver = pipe
+       user = DEBBUGS_USER
+       group = DEBBUGS_GROUP
+       command = /usr/lib/debbugs/receive
+       return_output
+
+       /etc/exim4/conf.d/router/250_debbugs:
+       debbugs:
+       debug_print = "R: debbugs for $local_part@$domain"
+       driver = accept
+       transport = debbugs_pipe
+       local_parts = submit : bugs : maintonly : quiet : forwarded : \
+       done : close : request : submitter : control : ^\\d+
+       domains = DEBBUGS_DOMAIN
+
+       Is this supposed to be...
+       /etc/exim4/conf.d/router/bounce_debbugs: ??
+       OR
+       /etc/exim4/conf.d/router/250_debbugs: ??
+
+       bounce_debbugs:
+       debug_print = "R: bounce_debbugs for $local_part@$domain"
+       driver = redirect
+       allow_fail
+       data = :fail: Unknown user
+       domains = DEBBUGS_DOMAIN
 ****** TODO Setup qmail and verify that this works
 
 ****** TODO Setup sendmail and check that this still works
@@ -185,3 +238,4 @@
 ******* bugspam.cgi
 ******* split_index.pl
 **** FOLLOWUP future_directions
+*** TODO Convert all the internal docs to markdown

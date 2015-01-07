@@ -53,6 +53,38 @@
 *** TODO post
     :DEADLINE: <2014-12-19 Fri>
     Setting up VimOrganizer - general tools for getting started etc?
+** Deadlines                                                      :deadlines:
+   :PROPERTIES:
+   :ID:       c969512d-813d-41f0-9b92-451f25d38853
+   :END:
+*** TODO Midterm Payment
+    DEADLINE: <2015-01-29 Thu>
+    :PROPERTIES:
+    :ID:       12c1c67b-3f24-4c8e-b52e-834d3db297b1
+    :END:
+*** TODO End of Internship
+    DEADLINE: <2015-03-12 Thu>
+    :PROPERTIES:
+    :ID:       a6c5be2c-0869-4370-af65-df6b18a123b2
+    :END:
+*** TODO Bug Triager How To
+    DEADLINE: <2015-03-09 Mon>
+    :PROPERTIES:
+    :ID:       97ecfdfc-98a2-4220-bb00-1a8e5334d761
+    :END:
+*** TODO Updated README.md
+    DEADLINE: <2015-01-29 Thu>
+    :PROPERTIES:
+    :ID:       5a1da7a2-d9e1-49c6-bab1-c83dc415d020
+    :END:
+*** TODO Document bug usertags and usercategories
+    :PROPERTIES:
+    :ID:       832a88cf-4725-42bb-9a2b-45b5ca9a24e3
+    :END:
+*** TODO Reorganization of http://www.debian.org/Bugs (maybe)
+    :PROPERTIES:
+    :ID:       06722fcb-c410-41e0-9470-21d9e760a248
+    :END:
 * Documentation
 ** TODO Finish updating Readme.md
    :SCHEDULED: <2014-12-11 Thu>

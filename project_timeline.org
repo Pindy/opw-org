@@ -41,7 +41,7 @@
      gvim to take effect. Not just a reload, but actually restarting gvim. No 
      clue why - maybe reloads don't work the same outside of the terminal? 
 **** TODO Put together a more succinct cheat sheet for vim keybindings
-* OPW Admin
+* OPW Admin                                                           :admin:
 ** ONGOING Write blog post
    :recurring
    :DEADLINE: <2014-12-19 Fri>

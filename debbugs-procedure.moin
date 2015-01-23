@@ -1,0 +1,271 @@
+= Test server for debbugs =
+
+== 2015-01-20 ==
+
+=== Built server ===
+
+ * Build server using nova
+
+{{{#!highlight bash numbers=disable
+nova boot --flavor performance1-2 --image 79b12812-7d6b-43af-939b-972796317135 --key-name "opw at lucy" cuddy
+}}}
+ * Installed base server
+ * Updated server
+ * Removed debian user
+{{{#!highlight bash numbers=disable
+deluser --remove-home debian
+}}}
+ * Made home directory skeleton
+{{{#!highlight bash numbers=disable
+mkdir -p /etc/skel/{bin,programming,public,src,templates,tmp}
+}}}
+ * Created user for opw
+{{{#!highlight bash numbers=disable
+adduser opw
+adduser opw sudo
+}}}
+ * Installed vim-nox
+{{{#!highlight bash numbers=disable
+apt-get install vim-nox
+}}}
+ * Copied ssh id from lucy
+ * Logged in with opw
+ * Installed git
+ * Installed byobu
+ * Configured default editor
+{{{#!highlight bash numbers=disable
+sudo update-alternatives --config editor
+}}}
+ * Reconfigured locales
+{{{#!highlight bash numbers=disable
+sudo dpkg-reconfigure locales
+}}}
+ * Installed dotfiles
+ * Installed perl-doc
+ * Installed mlocate
+ * Updated database
+{{{#!highlight bash numbers=disable
+sudo updatedb
+}}}
+ * Installed apache2
+ * Disabled default site
+{{{#!highlight bash numbers=disable
+sudo a2dissite 000-default
+sudo service apache2 reload
+}}}
+
+=== Installed debbugs ===
+
+ * Cloned the repo
+{{{#!highlight bash numbers=disable
+git clone http://bugs-master.debian.org/debbugs-source/debbugs.git
+}}}
+ * Added don's branch and use his master (warning - detached head)
+{{{#!highlight bash numbers=disable
+cd debbugs;
+git remote add don http://git.donarmstrong.com/debbugs.git;
+git fetch --all
+git checkout don/master
+}}}
+{{{#!wiki note numbers=disable
+'''TODO'''
+
+Ask Don for a better way to do this
+}}}
+ * Created versions and spool directory
+{{{#!highlight bash numbers=disable
+cd
+mkdir spool version
+}}}
+==== Retrieved partial database of bugs for testing purposes ====
+ * Got list of rsync targets from debbugs
+{{{#!highlight bash numbers=disable
+rsync --list-only rsync://bugs-mirror.debian.org/
+}}}
+ * Grabbed bugs ending in 00 (bugs are hashed)
+{{{#!highlight bash numbers=disable
+mkdir -p splool/db-h/00;
+cd spool/db-h;
+rsync -av rsync://bugs-mirror.debian.org/bts-spool-db/00 .;
+}}}
+==== Retrieved bts-versions directory for testing purposes ====
+
+ * Pulled versions and indices
+{{{#!highlight bash numbers=disable
+cd
+rsync -av rsync://bugs-mirror.debian.org/bts-versions/ versions/
+}}}
+
+==== Retrieved bts-spool-index ====
+
+ * Pulled indices
+{{{#!highlight bash numbers=disable
+rsync -av rsync://bugs-mirror.debian.org/bts-spool-index index
+}}}
+==== Configured debbugs config ====
+ * Created configuration directory for debbugs
+{{{#!highlight bash numbers=disable
+sudo mkdir /etc/debbugs
+}}}
+ * Copied sample configuration from repository to config directory
+{{{#!highlight bash numbers=disable
+sudo cp ~/debbugs/scripts/config.debian /etc/debbugs/config
+}}}
+ * Temporarily change ownership of config directory for easier renameing
+{{{#!highlight bash numbers=disable
+sudo chown -R opw:opw /etc/debbugs
+}}}
+ * Updated $gConfigDir
+ * Updated $gSpoolDir
+ * Updated $gIndicesDir
+ * Updated $gWebDir
+ * Updated $gDocDir
+{{{#!highlight diff numbers=disable
+70,72c70,72
+< $gConfigDir = "/org/bugs.debian.org/etc";             # directory where this file is
+< $gSpoolDir = "/org/bugs.debian.org/spool";            # working directory
+< $gIndicesDir = "/org/bugs.debian.org/indices";                # directory where the indices are
+---
+> $gConfigDir = "/etc/debbugs";         # directory where this file is
+> $gSpoolDir = "/home/opw/spool";             # working directory
+> $gIndicesDir = "/home/opw/spool/indices";           # directory where the indices are
+74,75c74,75
+< $gWebDir = "/org/bugs.debian.org/www";                        # base location of web pages
+< $gDocDir = "/org/ftp.debian.org/ftp/doc";             # location of text doc files
+---
+> $gWebDir = "/home/opw/debbugs/html";                        # base location of web pages
+> $gDocDir = "/home/opw/debbugs/doc";         # location of text doc files
+}}}
+
+==== Configured webserver ====
+
+ * Copied example apache config
+{{{#!highlight bash numbers=disable
+sudo cp $HOME/debbugs/examples/apache.conf /etc/apache2/sites-available/debbugs.conf
+}}}
+ * Updated the DocumentRoot
+ * Updated the Directory entries
+ * Updated ScriptAlias
+{{{#!highlight diff numbers=disable
+5c5
+<     DocumentRoot /var/lib/debbugs/www/
+---
+>     DocumentRoot /home/opw/debbugs/html/
+10c10
+<     <Directory /var/lib/debbugs/www>
+---
+>     <Directory /home/opw/debbugs/html>
+16,17c16,17
+<     ScriptAlias /cgi-bin/ /var/lib/debbugs/www/cgi/
+<     <Directory "/var/lib/debbugs/www/cgi/">
+---
+>     ScriptAlias /cgi-bin/ /home/opw/debbugs/cgi/
+>     <Directory "/home/opw/debbugs/cgi/">
+}}}
+ * Enabled required apache mods
+{{{#!highlight bash numbers=disable
+sudo a2enmod rewrite
+sudo a2enmod cgid
+}}}
+ * Installed site
+{{{#!highlight bash numbers=disable
+sudo a2ensite debbugs
+}}}
+==== Installed dependencies ====
+
+ * Installed dependencies for debbugs-web and libdebbugs-perl
+	* Installed libmailtools-perl
+    * Installed ed
+    * Installed libmime-tools-perl
+    * Installed libio-stringy-perl
+    * Installed libmldbm-perl
+    * Installed liburi-perl
+    * Installed libsoap-lite-perl
+    * Installed libcgi-simple-perl
+    * Installed libparams-validate-perl
+    * Installed libtext-template-perl
+    * Installed libsafe-hole-perl
+    * Installed libmail-rfc822-address-perl
+    * Installed liblist-moreutils-perl
+    * Installed libtext-template-perl
+    * Installed libfile-libmagic-perl
+    * Installed libgravatar-url-perl
+    * Installed libwww-perl
+	* Installed imagemagick
+	* Installed libapache2-mod-perl2
+
+libmailtools-perl ed libmime-tools-perl libio-stringy-perl libmldbm-perl liburi-perl libsoap-lite-perl libcgi-simple-perl libparams-validate-perl libtext-template-perl libsafe-hole-perl libmail-rfc822-address-perl liblist-moreutils-perl libtext-template-perl libfile-libmagic-perl libgravatar-url-perl libwww-perl imagemagick libapache2-mod-perl2
+{{{#!highlight bash numbers=disable
+sudo apt-get install libmailtools-perl ed libmime-tools-perl libio-stringy-perl libmldbm-perl liburi-perl libsoap-lite-perl libcgi-simple-perl libparams-validate-perl libtext-template-perl libsafe-hole-perl libmail-rfc822-address-perl liblist-moreutils-perl libtext-template-perl libfile-libmagic-perl libgravatar-url-perl libwww-perl imagemagick libapache2-mod-perl2
+}}}
+
+==== Set up libraries ====
+
+ * Created symlinks to link source to their expected locations
+{{{#!highlight bash numbers=disable
+sudo mkdir -p /usr/local/lib/site_perl
+sudo ln -s /home/opw/debbugs/Debbugs /usr/local/lib/site_perl/
+}}}
+{{{#!highlight bash numbers=disable
+sudo mkdir -p /usr/share/debbugs/
+sudo ln -s /home/opw/debbugs/templates /usr/share/debbugs/
+}}}
+
+==== Create required files ====
+ * Created required files
+{{{#!highlight bash numbers=disable
+touch /etc/debbugs/pseudo-packages.description
+touch /etc/debbugs/Source_maintainers
+touch /etc/debbugs/pseudo-packages.maintainers
+touch /etc/debbugs/Maintainers
+touch /etc/debbugs/Maintainers.override
+mkdir /etc/debbugs/indices
+touch /etc/debbugs/indices/sources
+}}}
+
+ * Tested
+{{{#!highlight bash numbers=disable
+cd $HOME/debbugs
+perl -c cgi/bugreport.cgi
+REQUEST_METHOD=GET QUERY_STRING="bug=775300" perl cgi/bugreport.cgi;
+}}}
+
+==== Installed exim4 ====
+
+ * Installed exim4
+{{{#!highlight bash numbers=disable
+sudo apt-get install exim4
+}}}
+ * Created debbugs exim macros in `/etc/exim4/conf.d/main/03_debbugs`
+{{{
+DEBBUGS_DOMAIN = misspindy.org
+DEBBUGS_USER = opw
+DEBBUGS_GROUP = opw
+}}}
+ * Created transport rules in `/etc/exim4/conf.d/transport/30_debbugs`
+{{{
+debbugs_pipe:
+	debbugs_print = "T: debbugs_pipe for $local_part@$domain"
+	driver = pipe
+	user = DEBBUGS_USER
+	group = DEBBUGS_GROUP
+	command = /usr/lib/debbugs/receive
+	return_output
+}}}
+ * Created router rules in `/etc/exim4/conf.d/router/250_debbugs`
+{{{
+debbugs:
+	debug_print = "R: debbugs for $local_part@$domain"
+	driver = accept
+	transport = debbugs_pipe
+	local_parts = submit : bugs : maintonly : quiet : forwarded : \
+					done : close : request : submitter : control : ^\\d+
+	domains = DEBBUGS_DOMAIN
+
+bounce_debbugs:
+	debug_print = "R: bounce_debbugs for $local_part@$domain"
+	drive = redirect
+	allow_fail
+	data = :fail: Unknown user
+	domains = DEBBUGS_DOMAIN
+}}}
